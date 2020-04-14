@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="button1">增加子菜单</button>
+  <button id="button2">删除子菜单</button>
+  <button id="button3">修改子菜单</button>
+  <button id="button4">查询子菜单</button>
+</body>
+
+<script>
+  var b1 = document.getElementById("button1"),
+      b2 = document.getElementById("button2"),
+      b3 = document.getElementById("button3");
+      b4 = document.getElementById("button4");
+  
+//    // 定义setCommand 函数，该函数负责往按钮上面安装命令。点击按钮后会执行command对象的execute()方法。
+//   var setCommand = function(button,command){
+//     button.onclick = function(){
+//         command.execute();
+//     }
+//   };
+
+//   // 定义对象来完成自己的操作
+//   var MenuBar = {
+//     refesh : function () {
+//       alert('刷新菜单目录');
+//     }
+//   };
+
+//   var SubMenu = {
+//     add: function(){
+//         alert("增加子菜单");
+//     },
+//     del: function(){
+//         alert("删除子菜单");
+//     }
+//   };
+
+//   // 编写命令
+//   var RefreshMenuBarCommand = function (receiver){
+//     this.receiver = receiver;
+//   };
+//   RefreshMenuBarCommand.prototype.execute = function(){
+//     this.receiver.refesh();
+//   }
+
+//   // 增加命令操作
+//  var AddSubMenuCommand = function(receiver) {
+//     this.receiver = receiver;
+//  };
+//  AddSubMenuCommand.prototype.execute = function() {
+//     this.receiver.add();
+//  }
+//  // 删除命令操作
+//  var DelSubMenuCommand = function(receiver) {
+//     this.receiver = receiver;
+//  };
+//  DelSubMenuCommand.prototype.execute = function(){
+//     this.receiver.del();
+//  }
+
+//  //最后传入command中 并且安装到button上
+//  var refershBtn = new RefreshMenuBarCommand(MenuBar);
+//  var addBtn = new AddSubMenuCommand(SubMenu);
+//  var delBtn = new DelSubMenuCommand(SubMenu);
+ 
+//  setCommand(b1,refershBtn);
+//  setCommand(b2,addBtn);
+//  setCommand(b3,delBtn);
+/*
+ bindEnv函数负责往按钮上面安装点击命令。点击按钮后，会调用
+ 函数
+ */
+  var bindEnv = function(button,func) {
+      button.onclick = function () {
+        func();
+      }
+    }
+
+    //编写具体业务逻辑
+  var Menu = {
+      add: function(){
+        alert("我是来处理一些增加操作的");
+    },
+    del: function(){
+        alert("我是来处理一些删除操作的");
+    },
+    update: function(){
+        alert("我是来处理一些更新操作的");
+    },
+    query: function(){
+        alert("我是来查询一些更新操作的");
+    }
+  };
+ 
+  // 增加按钮
+bindEnv(b1,Menu.add);
+// 删除按钮
+bindEnv(b2,Menu.del);
+// 更改按钮
+bindEnv(b3,Menu.update);
+//查询
+bindEnv(b4,Menu.query);
+
+</script>
+
+</html>
